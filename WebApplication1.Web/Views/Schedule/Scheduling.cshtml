@@ -1,0 +1,26 @@
+﻿@using WebApplication1.Web.Controllers
+@using WebApplication1.Web.Models
+
+@{
+    ViewBag.Title = "Scheduling";
+}
+
+<h2>Copy Schedule</h2>
+<p>@ViewBag.ErrorMessage</p>
+
+@using (Html.BeginForm("Scheduling", "Schedule", FormMethod.Post))
+{
+    <p class="form-group">
+        TargetDate: (Ex. June 02 2018) @Html.TextBox("TargetDate", null, new { @class = "form-control" }) <br />
+
+        CopiedDate: (Ex. May 04 2018) @Html.TextBox("CopiedDate", null, new { @class = "form-control" }) <br />
+
+        TargetTheatre: (Ex. TheatreOne)@Html.TextBox("TargetTheatre", null, new { @class = "form-control" })<br />
+
+
+
+        @*@Html.ActionLink("Copy Schedule", "", "Schedule", new { @class = "btn btn-primary" })*@
+
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+}

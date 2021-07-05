@@ -1,0 +1,64 @@
+﻿@model WebApplication1.Web.Models.Report
+@using WebApplication1.Web.Models
+
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Report Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Date Range:
+        </dt>
+
+        <p>@Model.StartDate to @Model.EndDate</p>
+
+
+        <dt>
+            Movie Filter:
+        </dt>
+        <p>@ViewBag.MovieName</p>
+
+        <dt>
+            Rating Filter:
+        </dt>
+        <p>@Model.RatingFilter</p>
+
+        <dt>
+            Customer Filter:
+        </dt>
+        <p>@ViewBag.CustomerName</p>
+
+        @if (Model.DisplaySeats)
+        {
+            <dt>
+                Seats Sold:
+            </dt>
+
+            <p>
+                @ViewBag.NumSeats
+            </p>
+        }
+
+        @if (Model.DisplayRevenue)
+        {
+            <dt>
+                Revenue:
+            </dt>
+
+            <dd>
+                $@ViewBag.Revenue
+            </dd>
+        }
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Query", "Query", "Reports", null, new { @class = "btn btn-primary" })
+</p>

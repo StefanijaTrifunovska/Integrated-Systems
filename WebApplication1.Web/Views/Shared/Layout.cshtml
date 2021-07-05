@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Longhorn Cinema</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Movie Reviews", "Index", "MovieReviews", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Showings", "Index", "Showings", null, new { @class = "nav-link" })
+                    </li>
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Tickets", "Index", "Tickets", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Orders", "Index", "Orders", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Copy Schedule", "Scheduling", "Schedule", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Reports", "Query", "Reports", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("MoviePrice", "Edit", "MoviePrices", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    @if (User.IsInRole("Customer"))
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Credit Cards", "Index", "CreditCards", null, new { @class = "nav-link" })
+                        </li>
+                    }
+
+                </ul>
+            </div>
+            @Html.Partial("_LoginPartial")
+        </nav>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Longhorn Cinema</p>
+        </footer>
+    </div>
+   @*@ <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>*@
+</body>
+</html>

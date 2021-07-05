@@ -1,0 +1,65 @@
+﻿@model WebApplication1.Web.Models.Showing
+@using WebApplication1.Web.Models
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Showing</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Movie
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Movie.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialEventStatus)
+        </dt>
+
+        <dd>
+            @if (Model.SpecialEventStatus == SpecialEvent.NotSpecial)
+            {<p>No</p>}
+            @if (Model.SpecialEventStatus == SpecialEvent.Special)
+            {<p>Yes</p>}
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TheatreNum)
+        </dt>
+
+        <dd>
+            @if (Model.TheatreNum == Theatre.TheatreOne)
+            {<p>1</p>}
+            @if (Model.TheatreNum == Theatre.TheatreTwo)
+            {<p>2</p>}
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Manager"))
+    {@Html.ActionLink("Edit", "Edit", null, new { id = Model.ShowingID }, new { @class = "btn btn-primary" })}
+
+    @Html.ActionLink("Back to List", "Index")
+</p>
